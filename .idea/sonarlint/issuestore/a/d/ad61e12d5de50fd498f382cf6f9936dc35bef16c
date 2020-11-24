@@ -1,21 +1,12 @@
 
-e
-java:S5361/"HReplace this call to "replaceAll()" by a call to the "replace()" method.(×‡Îô8àçäß.
-I
-java:S11993"-Extract this nested code block into a method.(à±Ú8àçäß.
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(éßÂûÿÿÿÿ
 C
 java:S1170"!Make this final field static too.(Ù½Ñÿÿÿÿÿ8’‘€òŞ.
 j
-java:S53616"HReplace this call to "replaceAll()" by a call to the "replace()" method.(àŒ”°øÿÿÿÿ8áçäß.
-X	java:S125-"<This block of commented-out lines of code should be removed.(êĞáÀ8âàß”ß.
-J
-java:S1199,"-Extract this nested code block into a method.(˜£ö8àçäß.
-s
-java:S1450"VRemove the "padding" field and declare it as a local variable in the relevant methods.(µ«ö¥8 ¬Ä•ß.
-w
-java:S1450"URemove the "result" field and declare it as a local variable in the relevant methods.(üÊ„ûüÿÿÿÿ8ÇòÄ•ß.
-^
-java:S3457?"AFormat specifiers should be used instead of string concatenation.(‹¸ë8ÇòÄ•ß.
+java:S53616"HReplace this call to "replaceAll()" by a call to the "replace()" method.(àŒ”°øÿÿÿÿ8ª˜Ú®ß.
 Œ
-java:S1130$"jRemove the declaration of thrown exception 'java.lang.NumberFormatException' which is a runtime exception.(„Ü×§ÿÿÿÿÿ8Õä†ôŞ.
+java:S1130""jRemove the declaration of thrown exception 'java.lang.NumberFormatException' which is a runtime exception.(„Ü×§ÿÿÿÿÿ8Õä†ôŞ.
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(éßÂûÿÿÿÿ
+e
+java:S5361."HReplace this call to "replaceAll()" by a call to the "replace()" method.(×‡Îô8ª˜Ú®ß.
+^
+java:S3457@"AFormat specifiers should be used instead of string concatenation.(‹¸ë8„„®›ß.

@@ -10,10 +10,8 @@ public class ExponentialNotation {
     private String number = "";
 
     private int precision = 4;
-    private int exponent;
-    private String base;
-    private String padding = "";
-    private String result = "";
+    private final int exponent;
+    private final String base;
 
     public ExponentialNotation(String number) {
         this.number = number;
@@ -39,23 +37,26 @@ public class ExponentialNotation {
         StringBuilder stringBuilder;
         int indexOfDecimalPoint = base.indexOf('.') >= 0 ? base.indexOf('.') : base.length();
         String direction = number.replaceAll(regex, "$5");
+        String result = "";
         if (matcher.find()) {
+            String zeroFill = "";
             switch (direction) {
-                case "-" -> {
-                    //int distanceFromBeginning = indexOfDecimalPoint;
-                    padding = exponent >= indexOfDecimalPoint ? "0".repeat(exponent - indexOfDecimalPoint) : "";
-                    stringBuilder = new StringBuilder(padding.concat(base.replaceAll("\\.", "")));
-                    stringBuilder.insert(Math.abs(exponent - (indexOfDecimalPoint + padding.length())), '.');
+                case "-":
+                    zeroFill = exponent >= indexOfDecimalPoint ? "0".repeat(exponent - indexOfDecimalPoint) : "";
+                    stringBuilder = new StringBuilder(zeroFill.concat(base.replaceAll("\\.", "")));
+                    stringBuilder.insert(Math.abs(exponent - (indexOfDecimalPoint + zeroFill.length())), '.');
                     result = stringBuilder.toString();
-                }
-                case "+", "" -> {
+                    break;
+                case "+":
+                case "":
                     int distanceFromEnd = base.length() - indexOfDecimalPoint - 1;
-                    padding = exponent > distanceFromEnd ? "0".repeat(exponent - distanceFromEnd + 1) : "";
-                    stringBuilder = new StringBuilder(base.replaceAll("\\.", "").concat(padding));
+                    zeroFill = exponent > distanceFromEnd ? "0".repeat(exponent - distanceFromEnd + 1) : "";
+                    stringBuilder = new StringBuilder(base.replaceAll("\\.", "").concat(zeroFill));
                     stringBuilder.insert((indexOfDecimalPoint + exponent), '.');
                     result = stringBuilder.toString();
-                }
-                default -> throw new IllegalStateException("Unexpected value: " + direction);
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + direction);
             }
         } else {
             throw new NumberFormatException();
@@ -64,11 +65,10 @@ public class ExponentialNotation {
     }
 
     public static void main(String[] args) {
-        ExponentialNotation exponentialNotation = new ExponentialNotation("12345.7e-4");
-        exponentialNotation.setPrecision(2);
+        ExponentialNotation exponentialNotation = new ExponentialNotation("12545.678e-3");
+        exponentialNotation.setPrecision(3);
         System.out.printf("The conversion of %s is %s%n",
                 exponentialNotation.getNumber(),
                 exponentialNotation.convertNumber());
     }
 }
-
