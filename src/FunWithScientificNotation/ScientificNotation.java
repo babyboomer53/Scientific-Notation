@@ -9,7 +9,7 @@ public class ScientificNotation {
 
     private String number = "";
 
-    private int precision = 4;
+    private int precision;
     private final int exponent;
     private final String mantissa;
 
@@ -17,6 +17,7 @@ public class ScientificNotation {
         this.number = number;
         this.exponent = Integer.parseInt(number.replaceAll(regex, "$6"));
         this.mantissa = number.replaceAll(regex, "$1$2$3");
+        this.precision = 4;
     }
 
     public void setPrecision(int precision) throws InvalidPrecisionNumber {
@@ -70,9 +71,9 @@ public class ScientificNotation {
 
 
     public static void main(String[] args) {
-        ScientificNotation scientificNotation = new ScientificNotation("12545.678e3");
+        ScientificNotation scientificNotation = new ScientificNotation("12545.678e-10");
         try {
-            scientificNotation.setPrecision(-3);
+            scientificNotation.setPrecision(12);
             System.out.printf("The conversion of %s is %s%n",
                     scientificNotation.getNumber(),
                     scientificNotation.convertNumber());
