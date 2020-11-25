@@ -1,0 +1,12 @@
+
+C
+java:S1170"!Make this final field static too.(Ù½Ñÿÿÿÿÿ8’‘€òŞ.
+^
+java:S3457D"AFormat specifiers should be used instead of string concatenation.(‹¸ë8„„®›ß.
+e
+java:S53612"HReplace this call to "replaceAll()" by a call to the "replace()" method.(Òî€8ª˜Ú®ß.
+Œ
+java:S1130&"jRemove the declaration of thrown exception 'java.lang.NumberFormatException' which is a runtime exception.(„Ü×§ÿÿÿÿÿ8Õä†ôŞ.
+e
+java:S5361:"HReplace this call to "replaceAll()" by a call to the "replace()" method.(›°¯Ğ8ª˜Ú®ß.
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(„¦·

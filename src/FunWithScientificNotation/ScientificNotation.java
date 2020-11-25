@@ -1,9 +1,9 @@
-package ScientificNotation;
+package FunWithScientificNotation;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ExponentialNotation {
+public class ScientificNotation {
 
     private final String regex = "^(-?\\d*)(\\.?)(\\d*)([eE])([-\\+]?)(\\d+)$";
 
@@ -11,16 +11,20 @@ public class ExponentialNotation {
 
     private int precision = 4;
     private final int exponent;
-    private final String base;
+    private final String mantissa;
 
-    public ExponentialNotation(String number) {
+    public ScientificNotation(String number) {
         this.number = number;
         this.exponent = Integer.parseInt(number.replaceAll(regex, "$6"));
-        this.base = number.replaceAll(regex, "$1$2$3");
+        this.mantissa = number.replaceAll(regex, "$1$2$3");
     }
 
-    public void setPrecision(int precision) {
-        this.precision = precision;
+    public void setPrecision(int precision) throws InvalidPrecisionNumber {
+        if (precision >= 0) {
+            this.precision = precision;
+        } else {
+            throw new InvalidPrecisionNumber(String.format("The argument must be greater then 0 (zero): %d", precision));
+        }
     }
 
     public void setNumber(String number) {
@@ -35,7 +39,7 @@ public class ExponentialNotation {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(number);
         StringBuilder stringBuilder;
-        int indexOfDecimalPoint = base.indexOf('.') >= 0 ? base.indexOf('.') : base.length();
+        int indexOfDecimalPoint = mantissa.indexOf('.') >= 0 ? mantissa.indexOf('.') : mantissa.length();
         String direction = number.replaceAll(regex, "$5");
         String result = "";
         if (matcher.find()) {
@@ -43,15 +47,15 @@ public class ExponentialNotation {
             switch (direction) {
                 case "-":
                     zeroFill = exponent >= indexOfDecimalPoint ? "0".repeat(exponent - indexOfDecimalPoint) : "";
-                    stringBuilder = new StringBuilder(zeroFill.concat(base.replaceAll("\\.", "")));
+                    stringBuilder = new StringBuilder(zeroFill.concat(mantissa.replaceAll("\\.", "")));
                     stringBuilder.insert(Math.abs(exponent - (indexOfDecimalPoint + zeroFill.length())), '.');
                     result = stringBuilder.toString();
                     break;
                 case "+":
                 case "":
-                    int distanceFromEnd = base.length() - indexOfDecimalPoint - 1;
+                    int distanceFromEnd = mantissa.length() - indexOfDecimalPoint - 1;
                     zeroFill = exponent > distanceFromEnd ? "0".repeat(exponent - distanceFromEnd + 1) : "";
-                    stringBuilder = new StringBuilder(base.replaceAll("\\.", "").concat(zeroFill));
+                    stringBuilder = new StringBuilder(mantissa.replaceAll("\\.", "").concat(zeroFill));
                     stringBuilder.insert((indexOfDecimalPoint + exponent), '.');
                     result = stringBuilder.toString();
                     break;
@@ -64,11 +68,24 @@ public class ExponentialNotation {
         return String.format("%,." + precision + "f", Double.parseDouble(result));
     }
 
+
     public static void main(String[] args) {
-        ExponentialNotation exponentialNotation = new ExponentialNotation("12545.678e-3");
-        exponentialNotation.setPrecision(3);
-        System.out.printf("The conversion of %s is %s%n",
-                exponentialNotation.getNumber(),
-                exponentialNotation.convertNumber());
+        ScientificNotation scientificNotation = new ScientificNotation("12545.678e3");
+        try {
+            scientificNotation.setPrecision(-3);
+            System.out.printf("The conversion of %s is %s%n",
+                    scientificNotation.getNumber(),
+                    scientificNotation.convertNumber());
+        } catch (InvalidPrecisionNumber invalidPrecisionNumber) {
+            invalidPrecisionNumber.printStackTrace();
+            System.exit(-1);
+        }
+    }
+}
+
+class InvalidPrecisionNumber extends Exception {
+    private static final long serialVersionUID = 1L;
+    InvalidPrecisionNumber(String message) {
+        super(message);
     }
 }

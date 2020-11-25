@@ -1,0 +1,9 @@
+
+h
+java:S18541"FRemove this useless assignment to local variable "scientificNotation".(´¯ô×ıÿÿÿÿ8µüÊğß.
+M
+java:S5960"+Remove this assertion from production code.(ÿ‡ËÒÿÿÿÿÿ8²÷‘ß.
+Y
+java:S14811"7Remove this unused "scientificNotation" local variable.(´¯ô×ıÿÿÿÿ8µüÊğß.
+W	java:S1256"<This block of commented-out lines of code should be removed.(–Æ‡'8æË²–ß.
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(„¦·

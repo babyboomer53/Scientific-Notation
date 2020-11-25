@@ -1,9 +1,0 @@
-
-Z
-java:S14811"8Remove this unused "exponentialNotation" local variable.(ÑØ÷àøÿÿÿÿ8Ğş¹–ß.
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(éßÂûÿÿÿÿ
-i
-java:S18541"GRemove this useless assignment to local variable "exponentialNotation".(ÑØ÷àøÿÿÿÿ8Ğş¹–ß.
-W	java:S1255"<This block of commented-out lines of code should be removed.(–Æ‡'8æË²–ß.
-H
-java:S5960"+Remove this assertion from production code.(ó•’Æ8²÷‘ß.
