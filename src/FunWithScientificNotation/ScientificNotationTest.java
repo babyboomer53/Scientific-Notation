@@ -49,13 +49,13 @@ public class ScientificNotationTest {
         ScientificNotation scientificNotation = new ScientificNotation("12345.7z5");
     }
 
-    @Test(expected = InvalidPrecisionNumber.class)
-    public void setPrecisionNumber() throws InvalidPrecisionNumber {
+    @Test(expected = InvalidValue.class)
+    public void setPrecisionNumber() throws InvalidValue {
         ScientificNotation scientificNotation = new ScientificNotation("12345.089E4");
         try {
             scientificNotation.setPrecision(-2);
-        } catch (InvalidPrecisionNumber invalidPrecisionNumber) {
-            throw new InvalidPrecisionNumber("Oops!");
+        } catch (InvalidValue invalidValue) {
+            throw new InvalidValue("Oops!");
         }
     }
 

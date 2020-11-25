@@ -20,11 +20,11 @@ public class ScientificNotation {
         this.precision = 4;
     }
 
-    public void setPrecision(int precision) throws InvalidPrecisionNumber {
+    public void setPrecision(int precision) throws InvalidValue {
         if (precision >= 0) {
             this.precision = precision;
         } else {
-            throw new InvalidPrecisionNumber(String.format("The argument must be greater then 0 (zero): %d", precision));
+            throw new InvalidValue(String.format("The argument must be greater than or equal to 0 (zero): %d", precision));
         }
     }
 
@@ -73,20 +73,20 @@ public class ScientificNotation {
     public static void main(String[] args) {
         ScientificNotation scientificNotation = new ScientificNotation("12545.678e-10");
         try {
-            scientificNotation.setPrecision(12);
+            scientificNotation.setPrecision(-12);
             System.out.printf("The conversion of %s is %s%n",
                     scientificNotation.getNumber(),
                     scientificNotation.convertNumber());
-        } catch (InvalidPrecisionNumber invalidPrecisionNumber) {
-            invalidPrecisionNumber.printStackTrace();
+        } catch (InvalidValue invalidValue) {
+            invalidValue.printStackTrace();
             System.exit(-1);
         }
     }
 }
 
-class InvalidPrecisionNumber extends Exception {
+class InvalidValue extends Exception {
     private static final long serialVersionUID = 1L;
-    InvalidPrecisionNumber(String message) {
+    InvalidValue(String message) {
         super(message);
     }
 }
